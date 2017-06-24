@@ -1,6 +1,7 @@
 var grid;
 var grid_size;
 var button;
+var slider;
 
 var going = false
 
@@ -8,11 +9,13 @@ var going = false
 
 function setup() {
     createCanvas(windowHeight+100, windowHeight);
-    grid_size = windowHeight/((10+1)*2);
+    grid_size = windowHeight/((10+1)*1.4);
     var gr = [];
     button = createButton("Go!");
-    button.position(windowHeight+20, 20);
+    button.position(400, 20);
     button.mousePressed(go);
+    slider = createSlider(0.3, 35, 0.1);
+    slider.position(400, 50);
     for(x=0; x<grid_size; x++) {
         var line = []
         for (y=0; y<grid_size; y++) {
@@ -58,6 +61,7 @@ function mousePressed() {
 }
 
 function draw() { 
+    frameRate(slider.value());
     if (going) {
     background(51);
     grid.nxt();
